@@ -11,12 +11,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //! 
+  //!
   Completer<GoogleMapController> _controller = Completer();
 
   //! cameraPosition in initial
   static final CameraPosition _kCameraPosition = CameraPosition(
-    target: LatLng(37.7749, -122.4194),
+    target: LatLng(33.6844, 73.0479),
     zoom: 12,
   );
   @override
@@ -27,9 +27,25 @@ class _HomePageState extends State<HomePage> {
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         compassEnabled: true,
         myLocationEnabled: true,
+        markers: Set<Marker>.from(
+          [
+             Marker(
+              markerId: MarkerId('1'),
+              position: LatLng(33.6844, 73.084488),
+              infoWindow: InfoWindow(title: 'My current location')
+            ),
+
+            Marker(
+              markerId: MarkerId('2'),
+              position: LatLng(33.738045, 73.0479),
+              infoWindow: InfoWindow(title: 'e-11 Sector')
+            ),
+
+          ],
+        ),
       ),
     );
   }
